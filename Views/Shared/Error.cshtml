@@ -1,0 +1,41 @@
+﻿@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<!-- ============================================================
+     ===== Error Page
+     ===== Displays generic error information when an exception occurs.
+     ===== Shows the Request ID if available (for debugging / tracing).
+     ============================================================ -->
+
+<h1 class="text-danger">Error</h1>
+<h2 class="text-danger">An unexpected error occurred while processing your request.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<!-- ===== Development environment warning ===== -->
+<h3>Development Mode</h3>
+
+<p>
+    Switching to the <strong>Development</strong> environment will display detailed
+    error information that can help identify the problem.
+</p>
+
+<p>
+    <strong>Note:</strong> The Development environment should <em>never</em> be enabled
+    for deployed or production applications.
+    It may expose sensitive exception data to end users.
+</p>
+
+<p>
+    To enable local debugging, set the environment variable
+    <code>ASPNETCORE_ENVIRONMENT=Development</code>
+    and restart the application.
+</p>

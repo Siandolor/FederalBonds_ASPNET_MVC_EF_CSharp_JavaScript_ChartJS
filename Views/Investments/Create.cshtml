@@ -1,0 +1,37 @@
+@model IEnumerable<FederalBonds.Models.Product>
+
+@{
+    ViewData["Title"] = "Make an Investment";
+}
+
+<!-- ============================================================
+     ===== Investment Creation Page
+     ===== Allows the user to invest in one of the available 
+     ===== FederalBonds products with a chosen amount.
+     ============================================================ -->
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post">
+    <!-- ===== Product selection dropdown ===== -->
+    <div class="mb-3">
+        <label class="form-label">Product</label>
+        <select name="productId" class="form-select" required>
+            @foreach (var p in Model)
+            {
+                <option value="@p.Id">@p.Name (@p.Duration, @p.Rate)</option>
+            }
+        </select>
+    </div>
+
+    <!-- ===== Investment amount input ===== -->
+    <div class="mb-3">
+        <label class="form-label">Amount (EUR)</label>
+        <input type="number" name="amount" class="form-control" min="100" step="0.01" required />
+        <div class="form-text">Minimum investment: €100</div>
+    </div>
+
+    <!-- ===== Action buttons ===== -->
+    <button type="submit" class="btn btn-primary">Invest</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

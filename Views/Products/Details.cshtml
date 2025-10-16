@@ -1,0 +1,30 @@
+@model FederalBonds.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+<!-- ============================================================
+===== Product Details Page
+===== Displays detailed information about a single 
+===== FederalBonds investment product.
+============================================================ -->
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- ===== Product duration ===== -->
+<p><strong>Duration:</strong> @Model.Duration</p>
+
+<!-- ===== Product interest rate ===== -->
+<p><strong>Interest rate:</strong> @Model.Rate</p>
+
+<!-- ===== Green product badge ===== -->
+@if (Model.IsGreen)
+{
+    <span class="badge bg-success">Green</span>
+}
+
+<!-- ===== Product description ===== -->
+<p class="mt-3">@Model.Description</p>
+
+<!-- ===== Back navigation ===== -->
+<a href="@Url.Action("Index")" class="btn btn-secondary">Back</a>

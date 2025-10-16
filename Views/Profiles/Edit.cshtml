@@ -1,0 +1,104 @@
+@model FederalBonds.Models.Profile
+
+@{
+    var name = Model.FullName;
+    ViewData["Title"] = "Edit " + name;
+}
+
+<!-- ============================================================
+     ===== Profile Edit Page
+     ===== Enables users to update their personal information,
+     ===== including name, active status, and profile photo upload.
+     ===== The custom file input ensures consistent English labels
+     ===== across macOS, Windows, and Linux systems.
+     ============================================================ -->
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <!-- ===== Hidden ID field used for model binding ===== -->
+    <input type="hidden" asp-for="Id" />
+
+    <!-- ===== First name input ===== -->
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <!-- ===== Last name input ===== -->
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <!-- ============================================================
+         ===== Profile photo upload section
+         ===== Uses a custom-styled Bootstrap button ("Browse")
+         ===== to ensure English UI text instead of OS-localized labels.
+         ============================================================ -->
+    <div class="mb-3">
+        <label for="imageFile" class="form-label">New Photo (optional)</label>
+
+        <div class="custom-file">
+            <!-- Hidden native file input element -->
+            <input type="file" id="imageFile" name="imageFile" class="custom-file-input" hidden>
+
+            <!-- Custom browse button -->
+            <button type="button" id="customFileBtn" class="btn btn-outline-primary">Browse</button>
+
+            <!-- Dynamic filename display -->
+            <span id="fileName" class="ms-2 text-muted">No file chosen</span>
+        </div>
+    </div>
+
+    <!-- ===== Inline JavaScript controlling the custom file input behavior ===== -->
+    <script>
+        const input = document.getElementById('imageFile');
+        const button = document.getElementById('customFileBtn');
+        const fileName = document.getElementById('fileName');
+
+        button.addEventListener('click', () => input.click());
+        input.addEventListener('change', () => {
+            fileName.textContent = input.files.length > 0 ? input.files[0].name : 'No file chosen';
+        });
+    </script>
+
+    <!-- ============================================================
+         ===== Current profile image preview
+         ===== Displays the existing user profile photo if available.
+         ============================================================ -->
+    @if (!string.IsNullOrEmpty(Model.ImagePath))
+    {
+        <div class="mb-3">
+            <img src="@Model.ImagePath" alt="Profile picture"
+                 style="width:100px;height:100px;object-fit:cover;"
+                 class="rounded-circle border" />
+        </div>
+    }
+
+    <!-- ============================================================
+         ===== Active status toggle
+         ===== Allows enabling or disabling the user's account visibility.
+         ============================================================ -->
+    <div class="mb-3 form-check">
+        <input asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label">Active</label>
+    </div>
+
+    <!-- ============================================================
+         ===== Action buttons
+         ===== 'Save' submits changes, 'Cancel' returns to profile view.
+         ============================================================ -->
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+<!-- ============================================================
+     ===== Client-side validation scripts
+     ===== Provides live validation feedback for form inputs.
+     ============================================================ -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

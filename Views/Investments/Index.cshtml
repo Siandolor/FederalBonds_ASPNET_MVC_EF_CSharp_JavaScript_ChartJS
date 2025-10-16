@@ -1,0 +1,58 @@
+@model IEnumerable<FederalBonds.Models.Investment>
+
+@{
+    ViewData["Title"] = "My Investments";
+}
+
+<!-- ============================================================
+     ===== Investment Overview Page
+     ===== Displays all active and completed user investments,
+     ===== including amount, dates, and calculated interest.
+     ============================================================ -->
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">New Investment</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Purchase Date</th>
+            <th>Sale Date</th>
+            <th>Accrued Interest</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var inv in Model)
+    {
+        // ===== Calculate interest based on rate, amount, and duration =====
+        var rateStr = inv.Product?.Rate?.Split('%')[0].Replace(",", ".");
+        var parsed = decimal.TryParse(rateStr, System.Globalization.NumberStyles.Any, 
+            System.Globalization.CultureInfo.InvariantCulture, out var rate) ? rate : 0m;
+
+        var endDate = inv.SaleDate ?? DateTime.Today;
+        var days = (endDate - inv.PurchaseDate).TotalDays;
+        var interest = inv.Amount * (parsed / 100m) * ((decimal)days / 365m);
+
+        <tr>
+            <td>@inv.Product?.Name</td>
+            <td>@inv.Amount.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("en-GB"))</td>
+            <td>@inv.PurchaseDate.ToString("d")</td>
+            <td>@(inv.SaleDate.HasValue ? inv.SaleDate.Value.ToString("d") : "-")</td>
+            <td>@interest.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("en-GB"))</td>
+            <td>
+                @if (inv.SaleDate == null)
+                {
+                    <a class="btn btn-sm btn-warning" asp-action="Sell" asp-route-id="@inv.Id">Sell</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,59 @@
+@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<!-- ============================================================
+     ===== Registration Page
+     ===== Allows new users to create an account by entering
+     ===== personal details and login credentials.
+     ============================================================ -->
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Register" method="post">
+
+    <!-- ===== First Name ===== -->
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <!-- ===== Last Name ===== -->
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <!-- ===== Email Address ===== -->
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <!-- ===== Password ===== -->
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <!-- ===== Confirm Password ===== -->
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" type="password" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <!-- ===== Submit button ===== -->
+    <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
+
+<!-- ===== Client-side validation scripts ===== -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

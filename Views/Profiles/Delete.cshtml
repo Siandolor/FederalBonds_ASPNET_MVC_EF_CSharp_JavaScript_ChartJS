@@ -1,0 +1,31 @@
+@model FederalBonds.Models.Profile
+
+@{
+    var name = Model.FullName;
+    ViewData["Title"] = "Delete " + name;
+}
+
+<!-- ============================================================
+===== Profile Deletion Page
+===== Displays a confirmation prompt before permanently
+===== deleting a user profile and associated account.
+============================================================ -->
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning">
+    <p>Are you sure you want to delete this profile?</p>
+
+    <ul>
+        <li><strong>First name:</strong> @Model.FirstName</li>
+        <li><strong>Last name:</strong> @Model.LastName</li>
+    </ul>
+
+    <!-- ===== Deletion confirmation form ===== -->
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

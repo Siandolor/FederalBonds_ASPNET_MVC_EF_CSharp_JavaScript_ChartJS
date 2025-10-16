@@ -1,0 +1,45 @@
+@model IEnumerable<FederalBonds.Models.Product>
+
+<!-- ============================================================
+     ===== Product Overview Page
+     ===== Displays all available investment products with
+     ===== name, duration, rate, description, and green label.
+     ============================================================ -->
+
+<div class="text-center mb-5">
+    <h1>The Safest Investment in Austria</h1>
+    <p>Invest directly with the Republic of Austria. FederalBonds offers you safety, transparency, and solid returns.</p>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <!-- ===== Product title ===== -->
+                    <h5 class="card-title">@item.Name</h5>
+
+                    <!-- ===== Duration ===== -->
+                    <p class="card-text mb-1"><strong>Duration:</strong> @item.Duration</p>
+
+                    <!-- ===== Interest rate ===== -->
+                    <p class="card-text mb-1"><strong>Interest rate:</strong> @item.Rate</p>
+
+                    <!-- ===== Green product badge ===== -->
+                    @if (item.IsGreen)
+                    {
+                        <span class="badge bg-success mb-2">Green</span>
+                    }
+
+                    <!-- ===== Product description ===== -->
+                    <p class="card-text mt-2">@item.Description</p>
+
+                    <!-- ===== Details button ===== -->
+                    <a href="@Url.Action("Details", "Products", new { id = item.Id })"
+                       class="btn btn-primary mt-2">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
