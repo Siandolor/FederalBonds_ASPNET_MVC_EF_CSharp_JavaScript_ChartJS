@@ -1,10 +1,10 @@
-## FederalBonds – Secure Investment Web Application
+# FederalBonds – Secure Investment Web Application
 
 > “FederalBonds” is an educational and technical demo project illustrating secure, transparent, and user-friendly investment simulations using modern .NET architecture.
 
 ---
 
-### Overview
+## Overview
 **FederalBonds** is a modern ASP.NET Core MVC web application inspired by the Austrian “Bundesschatz” investment system.  
 It allows users to register, manage their profiles, view government bond–style products, and simulate investments in a secure and user-friendly way.
 
@@ -17,7 +17,7 @@ The project demonstrates:
 
 ---
 
-### Features
+## Features
 | Category | Description                                                                      |
 |-----------|----------------------------------------------------------------------------------|
 | **Authentication** | ASP.NET Core Identity with login, register, and logout functionality             |
@@ -30,7 +30,7 @@ The project demonstrates:
 
 ---
 
-### 🧩 Architecture
+## Architecture
 
 ```
 FederalBonds/
@@ -47,7 +47,7 @@ FederalBonds/
 
 ---
 
-### Database
+## Database
 
 - Default database: **SQLite**
 - Database file automatically created in the working directory
@@ -55,27 +55,27 @@ FederalBonds/
 
 ---
 
-### Getting Started
+## Getting Started
 
-#### 1. Clone the repository
+### 1. Clone the repository
 ```bash
   git clone https://github.com/<your-username>/FederalBonds.git
   cd FederalBonds
 ```
 
-#### 2. Run the application
+### 2. Run the application
 ```bash
   dotnet run
 ```
 
-#### 3. Open in browser
+### 3. Open in browser
 ```
 https://localhost:5001
 ```
 
 ---
 
-### Technology Stack
+## Technology Stack
 
 | Category | Technology |
 |-----------|-------------|
@@ -91,7 +91,7 @@ https://localhost:5001
 
 ---
 
-### Development Notes
+## Development Notes
 
 - Development uses SQLite for simplicity, but easily switchable to SQL Server or PostgreSQL.
 - Identity roles and tokens are configured but confirmation is disabled for local testing.
@@ -99,7 +99,7 @@ https://localhost:5001
 
 ---
 
-### Example Default Products (Seeded)
+## Example Default Products (Seeded)
 
 | Product                       | Duration | Rate | Type |
 |-------------------------------|-----------|------|------|
@@ -111,20 +111,30 @@ https://localhost:5001
 
 ---
 
-### Author & License
-
-**Author:** Daniel Fitz  
-**License:** MIT License  
-
----
-
-### Future Enhancements
+## Future Enhancements
 
 - Two-Factor authentication  
 - Investment export to CSV/JSON  
 - Role-based admin dashboard  
 - REST API layer for external integration  
 - Localization (English + German switch)  
+
+---
+
+## Author
+**Daniel Fitz, MBA, MSc, BSc**  
+Vienna, Austria  
+Developer & Security Technologist — *Post-Quantum Cryptography, Blockchain/Digital Ledger & Simulation*  
+C/C++ · C# · Java · Python · Visual Basic · ABAP · JavaScript/TypeScript
+
+International Accounting · Macroeconomics & International Relations · Physiotherapy · Computer Sciences  
+Former Officer of the German Federal Armed Forces
+
+---
+
+## License
+**MIT License** — free for educational and research use.  
+Attribution required for redistribution or commercial adaptation.
 
 ---
 
